@@ -20,6 +20,11 @@ public class Meeting extends AbstractEvent {
   }
 
   @Override
+  public boolean support(EventType type) {
+    return type == EventType.MEETING;
+  }
+
+  @Override
   public void print() {
     System.out.printf("[회의] %s : %s%n", getTitle(), agenda);
   }

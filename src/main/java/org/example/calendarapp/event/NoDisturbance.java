@@ -8,6 +8,11 @@ public class NoDisturbance extends AbstractEvent {
   }
 
   @Override
+  public boolean support(EventType type) {
+    return type == EventType.NO_DISTURBANCE;
+  }
+
+  @Override
   public void print() {
 
   }

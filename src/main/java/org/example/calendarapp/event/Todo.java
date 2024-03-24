@@ -11,6 +11,11 @@ public class Todo extends AbstractEvent {
   }
 
   @Override
+  public boolean support(EventType type) {
+    return type == EventType.TO_DO;
+  }
+
+  @Override
   public void print() {
     System.out.printf("[할 일] %s : %s%n", getTitle(), description);
   }
