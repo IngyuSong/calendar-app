@@ -2,6 +2,8 @@ package org.example.calendarapp.event;
 
 import java.time.ZonedDateTime;
 import java.util.Set;
+import org.example.calendarapp.event.update.AbstractAuditableEvent;
+import org.example.calendarapp.event.update.UpdateMeeting;
 
 public class Meeting extends AbstractEvent {
 
@@ -27,5 +29,14 @@ public class Meeting extends AbstractEvent {
   @Override
   public void print() {
     System.out.printf("[회의] %s : %s%n", getTitle(), agenda);
+  }
+
+  @Override
+  protected void update(AbstractAuditableEvent update) {
+    UpdateMeeting meetingUpdate = (UpdateMeeting) update;
+
+    this.participants = meetingUpdate.getParticipants();
+    this.meetingRoom = meetingUpdate.getMeetingRoom();
+    this.agenda = meetingUpdate.getAgenda();
   }
 }

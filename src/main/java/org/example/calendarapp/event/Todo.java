@@ -1,6 +1,8 @@
 package org.example.calendarapp.event;
 
 import java.time.ZonedDateTime;
+import org.example.calendarapp.event.update.AbstractAuditableEvent;
+import org.example.calendarapp.event.update.UpdateTodo;
 
 public class Todo extends AbstractEvent {
   private String description;
@@ -20,4 +22,10 @@ public class Todo extends AbstractEvent {
     System.out.printf("[할 일] %s : %s%n", getTitle(), description);
   }
 
+  @Override
+  protected void update(AbstractAuditableEvent update) {
+    UpdateTodo todoUpdate = (UpdateTodo) update;
+
+    this.description = todoUpdate.getDescription();
+  }
 }
